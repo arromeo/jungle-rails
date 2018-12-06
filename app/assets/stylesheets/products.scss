@@ -76,6 +76,11 @@ main section.categories-show {
   }
 }
 
+tr td:last-child{
+  width:1%;
+  white-space:nowrap;
+}
+
 main section.products-show {
 
   .product-detail {
