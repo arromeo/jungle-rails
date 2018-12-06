@@ -14,6 +14,16 @@ class ApplicationController < ActionController::Base
     redirect_to '/login' unless current_user
   end
 
+  def admin
+    if current_user
+      unless current_user.email == ENV[ADMIN_USERNAME]
+        redirect_to '/'
+      end
+    else
+      redirect_to '/login'
+    end
+  end
+
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
