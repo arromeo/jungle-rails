@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def admin
     if current_user
-      unless current_user.email == ENV[ADMIN_USERNAME]
+      unless current_user.email == ENV['ADMIN_USERNAME']
         redirect_to '/'
       end
     else
