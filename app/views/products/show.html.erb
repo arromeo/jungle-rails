@@ -26,6 +26,32 @@
       </div>
     </div>
 
-  </article>
+    <% if current_user %>
+      <%= form_for [@product, Review.new] do |f| %>
+        <p><%= f.label :rating %></p>
+        <p><%= f.select(:rating) do %>
+          <% [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]].each do |c| %>
+            <%= content_tag(:option, c.first, value: c.last) %>
+          <% end %>
+        <% end %></p>
+        <p><%= f.label :description %></p>
+        <p><%= f.text_area :description %></p>
+        <p><%= f.submit "Post" %></p>
+      <% end %>
+    <% end %>
 
+    <h2>Reviews</h2>
+    <div class="col-sm-8">
+      <% @product.reviews.each do |review| %>
+        <dl class="dl-horizontal review-display">
+            <dt>Rating:</dt>
+            <dd><%= review.rating %></dd>
+            <dt>Username:</dt>
+            <dd><%= review.user.name %></dd>
+            <dt>Description:</dt>
+            <dd><%= review.description %></dd>
+        </dl>
+      <% end %>
+    </div>
+  </article>
 </section>

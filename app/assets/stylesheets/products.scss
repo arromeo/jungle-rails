@@ -76,9 +76,18 @@ main section.categories-show {
   }
 }
 
-tr td:last-child{
+tr td:last-child {
   width:1%;
   white-space:nowrap;
+}
+
+.review-display {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: lightgray;
+  border-left: 10px solid black;
 }
 
 main section.products-show {
