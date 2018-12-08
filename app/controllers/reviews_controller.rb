@@ -1,17 +1,24 @@
 class ReviewsController < ApplicationController
 
+  before_filter :valid_action
   before_action :set_product
+  before_action :set_review, :only => :destroy
 
   def create
-    @review = @product.reviews.new(review_params)
-    @review.user_id = current_user.id
+    @new_review = @product.reviews.new(review_params)
+    @new_review.user_id = current_user.id
 
-    if @review.save
+    if @new_review.save
       redirect_to @product
     else
       redirect_to @product
     end
 
+  end
+
+  def destroy
+    @review.destroy
+    redirect_to @product
   end
 
   private
@@ -22,6 +29,15 @@ class ReviewsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:product_id])
-    byebug
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
+  end
+
+  def valid_action
+    unless current_user
+      redirect_to :root
+    end
   end
 end

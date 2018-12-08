@@ -27,22 +27,27 @@
     </div>
 
     <% if current_user %>
-      <%= form_for [@product, Review.new] do |f| %>
-        <p><%= f.label :rating %></p>
-        <p><%= f.select(:rating) do %>
-          <% [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]].each do |c| %>
-            <%= content_tag(:option, c.first, value: c.last) %>
-          <% end %>
-        <% end %></p>
-        <p><%= f.label :description %></p>
-        <p><%= f.text_area :description %></p>
-        <p><%= f.submit "Post" %></p>
-      <% end %>
+      <div class="review-container">
+        <%= form_for [@product, Review.new] do |f| %>
+          <dl class="review-form">
+            <h3>Leave a review</h3>
+            <dt><%= f.label :rating %></dt>
+            <dd><%= f.select(:rating) do %>
+            <% [['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]].each do |c| %>
+              <%= content_tag(:option, c.first, value: c.last) %>
+            <% end %>
+          <% end %></dd>
+          <dt><%= f.label :description %></dt>
+          <dd><%= f.text_area :description %></dd>
+          <dt><%= f.submit "Post" %></dt>
+          </dl>
+        <% end %>
+      </div>
     <% end %>
 
     <h2>Reviews</h2>
-    <div class="col-sm-8">
-      <% @product.reviews.each do |review| %>
+    <div class="reviews">
+      <% @product.reviews.reverse_each do |review| %>
         <dl class="dl-horizontal review-display">
             <dt>Rating:</dt>
             <dd><%= review.rating %></dd>
@@ -50,6 +55,12 @@
             <dd><%= review.user.name %></dd>
             <dt>Description:</dt>
             <dd><%= review.description %></dd>
+            <% if review.user == current_user %>
+              <dt>
+                <%= button_to 'Delete', product_review_path(@product, review), method: :delete %>
+              </dt>
+              <dd></dd>
+            <% end %>
         </dl>
       <% end %>
     </div>

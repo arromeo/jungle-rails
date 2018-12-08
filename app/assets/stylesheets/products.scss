@@ -90,6 +90,32 @@ tr td:last-child {
   border-left: 10px solid black;
 }
 
+.review-form {
+  padding: 15px;
+  margin: 0px;
+
+  label {
+    margin-bottom: 2px;
+  }
+
+  textarea {
+    margin-top: 2px;
+    width: 100%;
+  }
+
+  dd {
+    margin-bottom: 0px;
+  }
+
+  h3 {
+    margin-top:5px;
+  }
+}
+.review-container {
+  margin: 10px 0px;
+  background-color: lightgrey;
+}
+
 main section.products-show {
 
   .product-detail {
@@ -99,4 +125,6 @@ main section.products-show {
   }
 }
 
-
+.reviews {
+  width: 100%;
+}
