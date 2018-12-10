@@ -54,7 +54,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid if email exists in database' do
-      User.create(
+      User.create!(
         first_name: 'test',
         last_name: 'name',
         email: 'test@email.com',
@@ -74,7 +74,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'is not valid if email is duplicate but typed with different case' do
-      User.create(
+      User.create!(
         first_name: 'test',
         last_name: 'name',
         email: 'test@email.com',
@@ -102,7 +102,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'returns nil when login unsuccessful' do
-      User.create(
+      User.create!(
         first_name: 'test',
         last_name: 'name',
         email: 'test@email.com',
@@ -115,7 +115,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'successfully authenticates if email starts or ends with whitespace' do
-      User.create(
+      User.create!(
         first_name: 'test',
         last_name: 'name',
         email: 'test@email.com',
@@ -128,7 +128,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'successfully authenticates if email is correct but wrong case' do
-      User.create(
+      User.create!(
         first_name: 'test',
         last_name: 'name',
         email: 'test@email.com',
