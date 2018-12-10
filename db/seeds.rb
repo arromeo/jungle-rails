@@ -135,15 +135,19 @@ cat3.products.create!({
 ## USERS
 
 User.create!({
-  name: 'Dirk Digler',
+  first_name: 'Dirk',
+  last_name: 'Digler',
   email: 'dirk@dirk.dirk',
-  password_digest: '123'
+  password: 'password',
+  password_confirmation: 'password'
 })
 
 User.create!({
-  name: 'Person Smith',
-  email: 'psmith@aol.com',
-  password_digest: '123'
+  first_name: 'Person',
+  last_name: 'Smith',
+  email: 'psmith@email.com',
+  password: 'password',
+  password_confirmation: 'password'
 })
 
 ## REVIEWS
